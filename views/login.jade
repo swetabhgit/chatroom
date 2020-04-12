@@ -1,0 +1,12 @@
+extends layout
+
+block content
+ div(class="h2 center")
+   h2 signIn to enter chatroom
+ div
+  form(class="form center" action="/login" method = "post")
+   div( class="form-group")
+    input(class = "form-control" type ="text" name ="username" placeholder="enter the username")
+   div( class="form-group")
+    input(class = "form-control" type = "password" name= "password" placeholder="enter the password")
+   button(class = "btn btn-primary" type = "submit" value = "Login" name="button") submit

@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  div(class= "chat-room")
+    div(class="chat-room-block1 signup-h2")
+      h1 Welocome to chatRoom !{user} 
+      div(class = "display-block")
+        ul(id ="chat-list")
+    div(class = "chat-room-block2 form-group")
+     textarea(id ="text-box" value="hello")
+    button(name="send" class="btn btn-primary" onclick='publishMessage()') send
+  script.
+   var clientID = "ankit"+(Math.random())*100
+   var client = new Paho.MQTT.Client("broker.mqttdashboard.com",8000, clientID);
+   client.connect({onSuccess:onConnect});
+   client.onMessageArrived = onMessageArrived
+      // on connect            
+    function onConnect() {
+      // Once a connection has been made, make a subscription and send a message.
+      console.log("Connected");
+      client.subscribe("World");
+    } 
+    function publishMessage(){  
+      var text = document.getElementById('text-box').value   
+      message = new Paho.MQTT.Message(text);
+      message.destinationName = "World";
+      client.send(message);
+        var request = $.ajax({
+        url: "/updateChat/insert",
+        method: "POST",
+        data: { user :"swetabh", message:text},
+        dataType: "json"
+      });
+      request.done(function(msg){alert(JSON.stringify(msg))})
+    }
+    function onMessageArrived(message)
+    {
+      var node = document.createElement("LI");
+      var textnode = document.createTextNode(message.payloadString);
+      node.appendChild(textnode);
+      document.getElementById('chat-list').appendChild(node)
+
+      console.log("onnMessageArrived:"+message.payloadString)
+    }
+    

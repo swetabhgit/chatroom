@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(class="h2 center signup-h2")
+   h2 signup to register
+  div
+  form(action="/signup" method = "post" class="form center")
+   div(class="form-group")
+     input(class = "form-control" type ="text" name ="username" placeholder="enter the username")
+   div(class="form-group")
+     input(class = "form-control" type = "password" name= "password" placeholder="enter the password")
+
+   button(class = "btn btn-primary" type = "submit" value = "Login") signUp

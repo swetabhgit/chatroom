@@ -1,0 +1,18 @@
+
+{
+    "psqlConnection":{
+        "user": "myuser",
+        "host": "localhost",
+        "database": "usersDB",
+        "password":"myuser",
+        "port": 5433
+      },
+      "psqlConnectionChatTable":{
+      "user":"myuser",
+      "host": "localhost",
+      "database": "usersDB",
+      "password": "myuser",
+      "port": 5433
+      },
+      "secretKey":"secret"
+}
